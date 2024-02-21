@@ -1,35 +1,45 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import APIForm from './components/APIForm.jsx'
+const ACCESS_KEY = import.meta.env.VITE_APP_ACCESS_KEY;
+
+// State Variables
+const [inputs, setInputs] = useState({
+  url: "",
+  format: "",
+  no_ads: "",
+  no_cookie_banners: "",
+  width: "",
+  height: "",
+}); 
 
 function App() {
-  const [count, setCount] = useState(0)
+ 
+  const submitForm = () => {
+    e.preventDefault();
+ 
+
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="whole-page">
+      <h1>Build Your Own Screenshot! 📸</h1>
+      
+      <APIForm
+        inputs={inputs}
+        handleChange={(e) =>
+          setInputs((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value.trim(),
+          }))
+        }
+        onSubmit={submitForm}
+      />
+      <br></br>
+
+    </div>
+  );
 }
+
 
 export default App
